@@ -1,0 +1,23 @@
+import json
+import requests
+url = 'https://https://www.metshein.com/kordamine/json/raamatud.json'
+response = requests.get(url)
+
+if response.status_code == 200:
+    raamatud = response.json()
+    for raamatud in raamatud['raamatud']:
+        print(f"Pealkiri: {raamatud['pealkiri']}\nPostitus: {raamatud['autor']}\n")
+    kokku = 0
+    pole = 0
+    vanim = 3000
+    
+    for raamatud in raamatud['raamatud']:
+        aasta = raamatud['väljaandmise_aast']
+        saadavus = raamatud['saadavus']
+        if aasta<2000:
+            kokku+=1
+    print(kokku)
+    print(pole)
+
+else:
+    print("Päring ebaõnnestus, staatuskood:", response.status_code)
