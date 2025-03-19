@@ -1,21 +1,24 @@
 import json
 import requests
-url = 'https://https://www.metshein.com/kordamine/json/raamatud.json'
+url = 'https://www.metshein.com/kordamine/json/raamatud.json'
 response = requests.get(url)
 
 if response.status_code == 200:
-    raamatud = response.json()
-    for raamatud in raamatud['raamatud']:
-        print(f"Pealkiri: {raamatud['pealkiri']}\nPostitus: {raamatud['autor']}\n")
+    data = response.json()
+   
+    for raamatud in data['raamatud']:
+        print(f"Pealkiri: {raamatud['pealkiri']}\nAutor: {raamatud['autor']}\nAasta: {raamatud['väljaandmise_aasta']}")
     kokku = 0
     pole = 0
     vanim = 3000
-    
-    for raamatud in raamatud['raamatud']:
-        aasta = raamatud['väljaandmise_aast']
-        saadavus = raamatud['saadavus']
+    väljaandmise_aasta = 3000
+    for raamatud in data['raamatud']:
+        aasta = data['väljaandmise_aast']
+        saadavus = data['saadavus']
         if aasta<2000:
             kokku+=1
+        if saadavus == False:
+            pole+=1
     print(kokku)
     print(pole)
 
