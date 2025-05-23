@@ -13,7 +13,7 @@ if response.status_code == 200:
     vanim = 3000
     väljaandmise_aasta = 3000
     for raamatud in data['raamatud']:
-        aasta = data['väljaandmise_aast']
+        aasta = data['väljaandmise_aasta']
         saadavus = data['saadavus']
         if aasta<2000:
             kokku+=1
